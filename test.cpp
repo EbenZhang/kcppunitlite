@@ -1,8 +1,15 @@
-
-
 #include "test.h"
 #include "testregistry.h"
 #include "testresult.h"
+
+#ifdef _MSC_VER
+#ifdef _DEBUG
+#include "afx.h"
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+#endif
 
 Test::Test() :  bIsFailed(false)
 {
@@ -32,9 +39,16 @@ Test::~Test()
 {
     
 }
-TestCreator::TestCreator()
+TestCreator::TestCreator(bool bSlow)
 {
-    TestRegistry::addTest (this);
+    if(!bSlow)
+    {
+        TestRegistry::addFastTest (this);
+    }
+    else
+    {
+        TestRegistry::addSlowTest(this);
+    }
 }
 
 void TestCreator::run( TestResult& result )
@@ -47,3 +61,12 @@ TestCreator::~TestCreator()
 {
     
 }
+
+TestCreatorForTestOnlyOneTest::TestCreatorForTestOnlyOneTest() : TestCreator(false)
+{
+    TestRegistry::addOnlyTest(this);
+}
+
+
+//end of file
+

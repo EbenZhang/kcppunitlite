@@ -155,7 +155,7 @@ do{\
 
 #define STRCMP_EQUAL(expected,actual)\
 do{\
-    int nDiff = strncmp((expected),(actual),strlen(expected));\
+    int nDiff = strcmp((expected),(actual));\
     if(nDiff != 0)\
     {\
         std::string message("expected ");\

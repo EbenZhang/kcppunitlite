@@ -1,10 +1,15 @@
-
 #include "testresult.h"
 #include "failure.h"
-
 #include <iostream>
 
-
+#ifdef _MSC_VER
+#ifdef _DEBUG
+#include "afx.h"
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+#endif
 
 void TestResult::testWasRun()
 {
@@ -42,3 +47,8 @@ void TestResult::addSuccess( const Success& success )
 {
     successes.push_back(success);
 }
+
+
+//end of file
+
+

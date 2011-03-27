@@ -30,6 +30,8 @@ private:
     void                    DoAddOnlyTest(TestCreator* pTest);
 	void					DoRunFastTest (TestResult& result);
     void					DoRunSlowTest (TestResult& result);
+    void                    DoRunTestOnly(TestResult& result);
+    bool                    IsUsingTestOnly()const;
 
 	std::vector<TestCreator *>		m_fastTests;
     std::vector<TestCreator *>      m_slowTests;
